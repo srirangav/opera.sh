@@ -38,3 +38,30 @@ License:
 
     See LICENSE.txt
 
+Notes:
+
+    Some suggested addons for Opera are:
+    
+    1. Adblocker for Youtube:
+    
+        https://mybrowseraddon.com/adblocker-for-youtube.html
+        
+    2. Disconnect:
+    
+        https://disconnect.me/disconnect/help
+        
+    3. Ghostery
+    
+    4. HTTPS Everywhere:
+    
+        https://www.eff.org/https-everywhere
+        
+    5. Install Chrome Extensions
+    
+    6. KeePassXC-Browser
+    
+    7. Privacy Badger
+    
+    8. SimpleClear
+    
+    9. uBlock Origin

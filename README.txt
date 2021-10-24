@@ -23,7 +23,9 @@ Install:
 
 Running opera.sh:
 
-    $ opera.sh [-n|-d]
+    $ opera.sh [-a|-d|-n]
+
+    -a  enables extra privacy related options
 
     -n  prints out the command that would have been run
         but does not run Opera
@@ -32,6 +34,7 @@ Running opera.sh:
 
 History:
 
+    v.0.2.0  default to incognito only
     v.0.1.0  Initial release
 
 License:
@@ -65,3 +68,4 @@ Notes:
     8. SimpleClear
     
     9. uBlock Origin
+

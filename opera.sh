@@ -5,26 +5,26 @@
 # see: https://peter.sh/experiments/chromium-command-line-switches/
 
 OPERA="/Applications/Opera.app/Contents/MacOS/Opera"
-OPERA_OPTS="--disable-plugins-discovery \
-            --disable-preconnect \
-            --disable-translate \
-            --dns-prefetch-disable \
-            --no-pings \
-            --purge-memory-button \
-            --disable-auto-reload \
-            --disable-back-forward-cache \
-            --disable-bundled-ppapi-flash \
-            --disable-databases \
-            --disable-device-discovery-notifications \
-            --disable-experimental-accessibility-chromevox-language-switching \
-            --disable-experimental-accessibility-chromevox-search-menus \
-            --disable-flash-3d \
-            --disable-flash-stage3d \
-            --disable-local-storage \
-            --disable-speech-api \
-            --disable-speech-synthesis-api  \
-            --disable-sync \
-            --incognito"
+OPERA_OPTS="--incognito"
+OPERA_EXTRA_OPTS="--disable-plugins-discovery \
+                  --disable-preconnect \
+                  --disable-translate \
+                  --dns-prefetch-disable \
+                  --no-pings \
+                  --purge-memory-button \
+                  --disable-auto-reload \
+                  --disable-back-forward-cache \
+                  --disable-bundled-ppapi-flash \
+                  --disable-databases \
+                  --disable-device-discovery-notifications \
+                  --disable-experimental-accessibility-chromevox-language-switching \
+                  --disable-experimental-accessibility-chromevox-search-menus \
+                  --disable-flash-3d \
+                  --disable-flash-stage3d \
+                  --disable-local-storage \
+                  --disable-speech-api \
+                  --disable-speech-synthesis-api  \
+                  --disable-sync"
 
 # make sure opera is executable
 
@@ -33,21 +33,48 @@ if [ ! -x "$OPERA" ] ; then
     exit 1;
 fi
 
-# if -n is specified, echo the command we would have
-# executed and exit
+ECHO="";
+QUIET="TRUE";
+export ECHO QUIET
 
-if [ X"$1" = X"-n" ] ; then
-    echo $OPERA $OPERA_OPTS
-    exit $?
+for ARG in $@
+do
+
+    # if -a is specified, add the extra options
+    
+    if [ X"$ARG" = X"-a" ] ; then
+        OPERA_OPTS="$OPERA_OPTS $OPERA_EXTRA_OPTS";
+        continue;
+    fi
+
+    # if -n is specified, then only echo the command that
+    # would be executed, but don't execute the command
+    
+    if [ X"$ARG" = X"-n" ] ; then
+        ECHO=TRUE;
+        continue;
+    fi
+
+    # if -d is specified, don't redirect opera's output
+    # to /dev/null
+    
+    if [ X"$ARG" = X"-d" ] ; then
+        QUIET="";
+        continue;
+    fi
+done
+
+if [ X"$ECHO" = X"TRUE" ] ; then
+    echo "$OPERA" $OPERA_OPTS;
+    exit $?;
 fi
 
-# if -d is specified, don't redirect opera's output
-# to /dev/null
+# run opera as requested 
 
-if [ X"$1" = X"-d" ] ; then
-    exec "$OPERA" $OPERA_OPTS 
-else
+if [ X"$QUIET" = X"TRUE" ] ; then
     exec "$OPERA" $OPERA_OPTS > /dev/null 2>&1
+else
+    exec "$OPERA" $OPERA_OPTS 
 fi
 
 exit $?

@@ -37,7 +37,7 @@ ECHO="";
 QUIET="TRUE";
 export ECHO QUIET
 
-for ARG in $@
+for ARG in "$@"
 do
 
     # if -a is specified, add the extra options
@@ -78,3 +78,4 @@ else
 fi
 
 exit $?
+

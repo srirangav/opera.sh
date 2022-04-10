@@ -1,5 +1,8 @@
-opera.sh
---------
+README
+------
+
+opera.sh v.0.2.1
+By Sriranga Veeraraghavan <ranga@calalum.org>
 
 opera.sh is a script to start Opera in private browsing / incognito
 mode on MacOSX.  It is based on:
@@ -16,7 +19,7 @@ Homepage:
 
 Install:
 
-    Put opera.sh in a directory in your $PATH, e.g.:
+    Copy opera.sh to a directory in your $PATH, e.g.:
 
     $ cp opera.sh $HOME/bin
     $ chmod u+x $HOME/bin/opera.sh
@@ -34,6 +37,7 @@ Running opera.sh:
 
 History:
 
+    v.0.2.1  minor fixes for shellcheck
     v.0.2.0  default to incognito only
     v.0.1.0  Initial release
 
